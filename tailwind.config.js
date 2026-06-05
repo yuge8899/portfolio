@@ -4,18 +4,25 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         'bg-dark': '#0A0A0F',
+        'bg-light': '#F8FAFC',
         'bg-gradient-1': '#1A1A2E',
+        'bg-gradient-1-light': '#E2E8F0',
         'primary': '#6366F1',
         'primary-light': '#818CF8',
         'accent-glow': '#8B5CF6',
         'text-primary': '#FFFFFF',
+        'text-primary-light': '#0F172A',
         'text-secondary': '#94A3B8',
+        'text-secondary-light': '#64748B',
         'card-bg': 'rgba(255,255,255,0.05)',
+        'card-bg-light': 'rgba(255,255,255,0.8)',
         'border': 'rgba(255,255,255,0.1)',
+        'border-light': 'rgba(0,0,0,0.08)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

@@ -17,7 +17,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+      - uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847  # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist

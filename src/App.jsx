@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ScrollReveal from './components/ScrollReveal'
 
 function App() {
   const [scrollY, setScrollY] = useState(0)
@@ -27,10 +28,10 @@ function App() {
       <div className="relative z-10">
         <Navigation />
         <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
+        <ScrollReveal><About /></ScrollReveal>
+        <ScrollReveal><Projects /></ScrollReveal>
+        <ScrollReveal><Skills /></ScrollReveal>
+        <ScrollReveal><Contact /></ScrollReveal>
         <Footer />
       </div>
     </div>

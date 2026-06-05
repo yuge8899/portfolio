@@ -1,3 +1,10 @@
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 const projects = [
   {
     id: 1,
@@ -14,24 +21,36 @@ const projects = [
 ]
 
 const Projects = () => {
+  const ref = useRef(null)
+
+  useGSAP(() => {
+    gsap.fromTo('.project-card-el',
+      { opacity: 0, y: 40, scale: 0.95 },
+      {
+        opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'back.out(1.4)',
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      }
+    )
+  }, { scope: ref })
+
   return (
-    <section id="projects" className="py-20 px-20">
+    <section ref={ref} id="projects" className="py-20 px-20">
       <div className="max-w-7xl mx-auto">
-        {/* 标题 */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">精选作品</h2>
           <p className="text-text-secondary">这里展示了我最近的一些设计项目</p>
         </div>
 
-        {/* 项目卡片 */}
         <div className="flex flex-wrap justify-center gap-6">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <div
               key={project.id}
-              className="card-glass rounded-2xl p-4 w-[380px] animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="project-card-el card-glass rounded-2xl p-4 w-[380px]"
             >
-              {/* 项目图片 */}
               <div className="rounded-xl overflow-hidden mb-4">
                 <img
                   src={project.image}
@@ -39,15 +58,12 @@ const Projects = () => {
                   className="w-full h-[200px] object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
-
-              {/* 项目信息 */}
               <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
               <p className="text-text-secondary text-sm">{project.description}</p>
             </div>
           ))}
         </div>
 
-        {/* 查看更多 */}
         <div className="text-center mt-12">
           <button className="glass px-8 py-3 rounded-lg text-text-secondary hover:text-white transition-colors">
             查看更多作品
